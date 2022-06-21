@@ -8,3 +8,15 @@
 7. 245, 66, 221
 8. 245, 66, 132
 9. 245, 66, 66
+
+
+#keypoint sequence
+1.   "1_wither",
+2.  "2_pinbone",
+3.  "3_shoulderbone",
+4.  "5_front_girth_bottom",
+5.  "4_front_girth_top",
+6.  "9_Height_bottom",
+7.  "8_Height_top",
+8.  "7_rear_girth_bottom",
+9.  "6_rear_girth_top"
