@@ -6,7 +6,7 @@ import json
 import matplotlib.image as mpimg
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
-import pycocotools.coco as coco
+# import pycocotools.coco as coco
 import sys
 import platform
 import pandas as pd

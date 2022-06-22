@@ -1,0 +1,15 @@
+
+# def distance(point_ax,point_ay.point_bx,point_by):
+#     return round(((point_by-point_ay)**2+(point_bx-point_ax)**2)**0.5)
+
+# side_Length_wither = distance(sidex1,sidey1,sidex2,sidey2)
+
+
+side_Length_wither = round(((sidey2-sidey1)**2+(sidex2-sidex1)**2)**0.5)
+side_Length_shoulderbone = round(((sidey3-sidey2)**2+(sidex3-sidex2)**2)**0.5)
+side_F_Girth = round(((sidey5-sidey4)**2+(sidex5-sidex4)**2)**0.5)
+side_R_Girth = round(((sidey9-sidey8)**2+(sidex9-sidex8)**2)**0.5)
+side_height = round(((sidey7-sidey6)**2+(sidex7-sidex6)**2)**0.5)
+rear_width = round(((reary2-reary1)**2+(rearx2-rearx1)**2)**0.5)
+rear_height = round(((reary4-reary3)**2+(rearx4-rearx3)**2)**0.5)
+actual_width = rear_width*(side_height/rear_height)
