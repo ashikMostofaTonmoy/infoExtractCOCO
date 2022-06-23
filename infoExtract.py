@@ -1,7 +1,6 @@
 # In[]:
 
 import json
-from lib2to3.pytree import type_repr
 import matplotlib.pyplot as plt
 # import pycocotools.coco as coco
 import os
