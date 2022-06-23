@@ -4,6 +4,7 @@ import json
 from lib2to3.pytree import type_repr
 import matplotlib.pyplot as plt
 # import pycocotools.coco as coco
+import os
 import sys
 import platform
 import pandas as pd
@@ -19,7 +20,9 @@ print(sys.path)
 
 # COCO_B3_rear = json.load(f_B3_rear)
 
-f_COCO_Side = open('data/input/Side/COCO_Side.json')
+file_dir = 'data/input/Side/COCO_Side.json'
+
+f_COCO_Side = open(file_dir)
 # f_COCO_Side = open('data/input/COCO_Side.json')
 
 COCO_Side = json.load(f_COCO_Side)
@@ -65,8 +68,8 @@ sideAnnotation = pd.DataFrame.from_dict(
 desired_width = 1900
 
 
-def imgHeight(heightOrigine, widthOrigine, img_width=desired_width):
-    return img_width * heightOrigine / widthOrigine
+def imgHeight(heightOrigine, widthOrigine, img_width=int(desired_width)):
+    return int(img_width * heightOrigine / widthOrigine)
 
 
 def Xrescale(xloc, prevweidth, img_width=desired_width):
@@ -120,12 +123,19 @@ for entry in sideAnnotation.index:
 
     infos = {
         'id': [sideAnnotation.loc[entry, 'image_id']],  # image id
-        'name': [name],  # iamge name
+        'name': [name],
+        'weight': [str(name).split('_')[2]],  # iamge name
         'side_Length_wither': [distance(rescaled_keypoint[0], rescaled_keypoint[1], rescaled_keypoint[3], rescaled_keypoint[4])],
         'side_Length_shoulderbone': [distance(rescaled_keypoint[3], rescaled_keypoint[4], rescaled_keypoint[6], rescaled_keypoint[7])],
         'side_F_Girth': [distance(rescaled_keypoint[12], rescaled_keypoint[13], rescaled_keypoint[9], rescaled_keypoint[10])],
         'side_R_Girth': [distance(rescaled_keypoint[24], rescaled_keypoint[25], rescaled_keypoint[21], rescaled_keypoint[22])],
-        'side_height': [distance(rescaled_keypoint[18], rescaled_keypoint[19], rescaled_keypoint[15], rescaled_keypoint[16])]
+        'side_height': [distance(rescaled_keypoint[18], rescaled_keypoint[19], rescaled_keypoint[15], rescaled_keypoint[16])],
+        'keypoints': [keypoint],
+        'rescaled_keypoints': [rescaled_keypoint],
+        'original_image_height': [height],
+        'original_image_weidth': [width],
+        'rescaled_image_height': [currtnt_hight],
+        'rescaled_image_weidth': [desired_width]
         # 'rear_width': distance(rescaled_keypoint[], rescaled_keypoint[1], rescaled_keypoint[3], rescaled_keypoint[4]),
         # 'rear_height': distance(rescaled_keypoint[0], rescaled_keypoint[1], rescaled_keypoint[3], rescaled_keypoint[4]),
         # 'actual_width': distance(rescaled_keypoint[0], rescaled_keypoint[1], rescaled_keypoint[3], rescaled_keypoint[4])
@@ -148,3 +158,6 @@ for entry in sideAnnotation.index:
 # %%
 df_final
 # %%
+file_dir
+saved_file_name = os.path.splitext(os.path.split(file_dir)[1])[0]
+df_final.to_csv('data/'+saved_file_name+'.csv')
