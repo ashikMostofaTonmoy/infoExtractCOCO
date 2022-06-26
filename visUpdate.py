@@ -15,23 +15,23 @@ print(platform.python_version())
 print(sys.path)
 
 # In[]:
-
-f_COCO_Side = open('data/input/Side/COCO_Side.json')
+file_dir = 'data/input/Rear/COCO_B3_rear.json'
+f_COCO = open(file_dir)
 # f_COCO_Side = open('data/input/COCO_Side.json')
 
-COCO_Side = json.load(f_COCO_Side)
+COCO_ = json.load(f_COCO)
 
 # %%
-COCO_Side['annotations']
+COCO_['annotations']
 
 # %%
-type(COCO_Side['images'])
+type(COCO_['images'])
 
-sideImages = pd.DataFrame.from_dict(
-    COCO_Side['images']).set_index('id')
+Images = pd.DataFrame.from_dict(
+    COCO_['images']).set_index('id')
 
-sideAnnotation = pd.DataFrame.from_dict(
-    COCO_Side['annotations']).set_index('id')
+Annotation = pd.DataFrame.from_dict(
+    COCO_['annotations']).set_index('id')
 
 # %%
 
@@ -59,11 +59,11 @@ def distance(point_ax, point_ay, point_bx, point_by):
 annoid = 1
 for entry in range(annoid, annoid+1):
     # df.loc[df['shield'] > 6, ['max_speed']]
-    name = sideImages.loc[sideAnnotation.loc[entry, 'image_id'], 'file_name']
+    name = Images.loc[Annotation.loc[entry, 'image_id'], 'file_name']
     # name = sideImages.loc[entry, 'file_name']
-    keypoint = sideAnnotation.loc[entry, 'keypoints']
-    height = sideImages.loc[sideAnnotation.loc[entry, 'image_id'], 'height']
-    width = sideImages.loc[sideAnnotation.loc[entry, 'image_id'], 'width']
+    keypoint = Annotation.loc[entry, 'keypoints']
+    height = Images.loc[Annotation.loc[entry, 'image_id'], 'height']
+    width = Images.loc[Annotation.loc[entry, 'image_id'], 'width']
 
     currtnt_hight = imgHeight(height, width)
 
@@ -97,7 +97,7 @@ for entry in range(annoid, annoid+1):
         cv.circle(rescaledimg, (round(rescaled_keypoint[i]), round(
             rescaled_keypoint[i+1])), 10, (245, 221, 66), -1)
         cv.putText(rescaledimg, f"{int((i/3)+1)}{i,i+1} ", (round(rescaled_keypoint[i]), round(
-            rescaled_keypoint[i+1])), font, 4, (245, 221, 66), 2, cv.LINE_AA)
+            rescaled_keypoint[i+1])), font, 3, (245, 221, 66), 2, cv.LINE_AA)
     # visualize normal image
     for i in range(0, len(keypoint), 3):
         cv.circle(img, (round(keypoint[i]), round(

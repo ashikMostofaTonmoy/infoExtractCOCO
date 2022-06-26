@@ -14,10 +14,6 @@ print(sys.path)
 
 
 # In[]:
-# f_B3_rear = open('data/input/Rear/COCO_B3_rear.json')
-# # f_B3_rear = open('data/input/COCO_B3_rear.json')
-
-# COCO_B3_rear = json.load(f_B3_rear)
 
 file_dir = 'data/input/Side/COCO_Side.json'
 
@@ -27,15 +23,11 @@ f_COCO_Side = open(file_dir)
 COCO_Side = json.load(f_COCO_Side)
 
 
-# # In[]:
+# %%
+COCO_Side.keys()
 
-# COCO_B3_rear.keys()
-
-# # %%
-# COCO_Side.keys()
-
-# # %%
-# COCO_Side['images']
+# %%
+COCO_Side['images']
 
 # %%
 COCO_Side['annotations']
@@ -46,7 +38,7 @@ COCO_Side['annotations']
 # COCO_Side['images'][0]
 
 # %%
-type(COCO_Side['images'])
+print(type(COCO_Side['images']))
 
 sideImages = pd.DataFrame.from_dict(
     COCO_Side['images']).set_index('id')
@@ -58,7 +50,7 @@ sideAnnotation = pd.DataFrame.from_dict(
     COCO_Side['annotations']).set_index('id')
 
 # %%
-# sideImages
+sideImages
 # sideAnnotation
 
 # %%
