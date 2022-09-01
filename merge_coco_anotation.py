@@ -1,4 +1,6 @@
 # In[]:
+from email.mime import image
+from multiprocessing.sharedctypes import Value
 import pandas as pd
 import json
 # import matplotlib.pyplot as plt
@@ -19,6 +21,8 @@ file_2_path = 'data/ML_sojib/Goat_skeleton.json'
 file_1 = json.load(open(file_1_path))
 file_2 = json.load(open(file_2_path))
 
+# %%
+type(file_1)
 # %%
 # show keys
 file_1.keys()
@@ -58,19 +62,38 @@ file_1['categories'][0].keys()
 # 'metadata', 'creator', 'keypoint_colors', 'keypoints', 'skeleton'])
 # %%
 output = file_1
+
 type(output)
 # %%
 
 # Calling DataFrame constructor on list
-df = pd.DataFrame(file_1['images'])
-df.head()
+df_images = pd.DataFrame(file_1['images'])
+df_images.head()
 # %%
-df['id'].max()
+df_images['id'].max()
 
 # %%
-df.keys()
+df_images.keys()
+
 # %%
+for key in file_2:
+    print(key)
+    for item in file_2[key]:
+        print(item)
 
+# %%
+df_annotation = pd.DataFrame(file_2['annotations']).set_index('id')
+df_annotation
+# %%
+df2_images = pd.DataFrame(file_2['images']).set_index('id')
+df2_images
+# %%
+for key in file_2:
+    print(key)
+    for item in file_2[key]:
+        print(item)
 
-if __name__ == "__main__":
-    pass
+# %%
+if file_2["annotations"][1]['image_id'] == file_2["images"][1]['id']:
+    print('matched')
+# %%
