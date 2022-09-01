@@ -15,10 +15,10 @@ print(platform.python_version())
 print(sys.path)
 
 # In[]:
-file_dir = 'data/input/Rear/COCO_B3_rear.json'
-f_COCO = open(file_dir)
+# file_dir = 'data/input/Rear/COCO_B3_rear.json'
+file_dir = 'data/input/COCO_Side.json'
 # f_COCO_Side = open('data/input/COCO_Side.json')
-
+f_COCO = open(file_dir)
 COCO_ = json.load(f_COCO)
 
 # %%
